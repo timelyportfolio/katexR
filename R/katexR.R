@@ -5,12 +5,19 @@
 #' @import htmlwidgets
 #'
 #' @export
-katexR <- function(katex = "", tag = "div", width = NULL, height = NULL) {
+katexR <- function(
+  katex = ""
+  , tag = "div"
+  , style = NULL
+  , width = NULL
+  , height = NULL
+) {
 
-  # send katex to 
+  # send katex 
   x = list(
     katex = katex
     ,tag = tag
+    ,style = style
   )
 
   # create widget
@@ -19,6 +26,11 @@ katexR <- function(katex = "", tag = "div", width = NULL, height = NULL) {
     x,
     width = width,
     height = height,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      knitr.figure = FALSE
+      ,knitr.defaultWidth = "auto"
+      ,knitr.defaultHeight = "auto"
+    ),
     package = 'katexR'
   )
 }

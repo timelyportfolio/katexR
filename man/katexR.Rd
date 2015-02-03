@@ -3,7 +3,8 @@
 \alias{katexR}
 \title{<Add Title>}
 \usage{
-katexR(katex = "", tag = "div", width = NULL, height = NULL)
+katexR(katex = "", tag = "div", style = NULL, width = NULL,
+  height = NULL)
 }
 \description{
 <Add Description>
