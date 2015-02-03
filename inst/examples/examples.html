@@ -77,17 +77,29 @@ img {
 <pre class="r"><code>library(katexR)
 library(htmltools)
 
-katexR( &quot;\\frac{1}{n} \\sum_{i=i}^{n} x_{i}&quot;, tag=&quot;p&quot; )</code></pre>
-<p><div id="htmlwidget-2386" style="width:auto;height:auto;" class="katexR"></div>
-<script type="application/json" data-for="htmlwidget-2386">{ "x": {
+as.tags(katexR( &quot;\\frac{1}{n} \\sum_{i=i}^{n} x_{i}&quot;, tag=&quot;p&quot;, style = &quot;font-size:300%;&quot; ))</code></pre>
+<p><p id="htmlwidget-1782" style="font-size:300%;" class="katexR"></p>
+<script type="application/json" data-for="htmlwidget-1782">{ "x": {
  "katex": "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",
 "tag": "p",
-"style": null 
+"style": "font-size:300%;" 
+},"evals": [  ] }</script></p>
+<pre class="r"><code># without the as.tags() enclosure
+katexR( &quot;\\frac{1}{n} \\sum_{i=i}^{n} x_{i}&quot;, tag=&quot;span&quot;, style = &quot;font-size:300%;&quot; )</code></pre>
+<p><div id="htmlwidget-1093" style="width:auto;height:auto;" class="katexR"></div>
+<script type="application/json" data-for="htmlwidget-1093">{ "x": {
+ "katex": "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",
+"tag": "span",
+"style": "font-size:300%;" 
 },"evals": [  ] }</script></p>
 </div>
 <div id="katex-the-hard-way" class="section level3">
 <h3>KaTeX the hard way</h3>
 <p>Now, since we get the <code>KaTeX</code> dependencies with <code>katexR</code>, we can also use them bare. If you don’t anticipate already having a <code>katexR()</code> call in the document, then you can just do an empty <code>katexR()</code> to bring in the dependencies.</p>
+<pre><code>&lt;h5 style=&quot;text-align:center;&quot; &gt;&lt;span id = &quot;katex-from-scratch&quot;&gt;&lt;/span&gt; with `katexR`&lt;/h5&gt;
+&lt;script&gt;
+katex.render('\KaTeX',document.getElementById('katex-from-scratch'))
+&lt;/script&gt;</code></pre>
 <h5 style="text-align:center;">
 <span id="katex-from-scratch"></span> with <code>katexR</code>
 </h5>
@@ -97,13 +109,13 @@ katex.render('\KaTeX',document.getElementById('katex-from-scratch'))
 </div>
 <div id="inline-katex" class="section level3">
 <h3>Inline KaTeX</h3>
-<p>Now, let’s go back to one rendered by our <code>katexR</code> function like this with some inline <code>R</code> code to see how we get it in a paragraph <span id="htmlwidget-4072" class="katexR"></span>
-<script type="application/json" data-for="htmlwidget-4072">{ "x": {
+<p>Now, let’s go back to one rendered by our <code>katexR</code> function like this with some inline <code>R</code> code to see how we get it in a paragraph. In <span id="htmlwidget-2639" class="katexR"></span>
+<script type="application/json" data-for="htmlwidget-2639">{ "x": {
  "katex": "\\KaTeX",
 "tag": "span",
 "style": null 
-},"evals": [  ] }</script> formula for mean would look something like this <span id="htmlwidget-3991" class="katexR"></span>
-<script type="application/json" data-for="htmlwidget-3991">{ "x": {
+},"evals": [  ] }</script> <code>mean</code> would look something like this <span id="htmlwidget-5073" class="katexR"></span>
+<script type="application/json" data-for="htmlwidget-5073">{ "x": {
  "katex": "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",
 "tag": "span",
 "style": null 

@@ -28,8 +28,8 @@ katexR <- function(
     height = height,
     sizingPolicy = htmlwidgets::sizingPolicy(
       knitr.figure = FALSE
-      ,knitr.defaultWidth = "auto"
-      ,knitr.defaultHeight = "auto"
+      ,defaultWidth = "auto"
+      ,defaultHeight = "auto"
     ),
     package = 'katexR'
   )

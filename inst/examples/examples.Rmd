@@ -13,12 +13,22 @@ This is an R Markdown document.  Let's see how we might use it with the `katexR`
 library(katexR)
 library(htmltools)
 
-katexR( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="p" )
+as.tags(katexR( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="p", style = "font-size:300%;" ))
+
+# without the as.tags() enclosure
+katexR( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="span", style = "font-size:300%;" )
 ```
 
 ### KaTeX the hard way
 
 Now, since we get the `KaTeX` dependencies with `katexR`, we can also use them bare.  If you don't anticipate already having a `katexR()` call in the document, then you can just do an empty `katexR()` to bring in the dependencies.
+
+```
+<h5 style="text-align:center;" ><span id = "katex-from-scratch"></span> with `katexR`</h5>
+<script>
+katex.render('\KaTeX',document.getElementById('katex-from-scratch'))
+</script>
+```
 
 <h5 style="text-align:center;" ><span id = "katex-from-scratch"></span> with `katexR`</h5>
 <script>
@@ -27,5 +37,5 @@ katex.render('\KaTeX',document.getElementById('katex-from-scratch'))
 
 ### Inline KaTeX
 
-Now, let's go back to one rendered by our `katexR` function like this with some inline `R` code to see how we get it in a paragraph `r as.tags(katexR("\\KaTeX",tag="span"))` formula for mean would look something like this `r as.tags(katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",tag="span"))`.  Unfortunately, you might notice, that we have to **enclose it in `as.tags(...)`** to make it work, but hey it does work.
+Now, let's go back to one rendered by our `katexR` function like this with some inline `R` code to see how we get it in a paragraph.  In `r as.tags(katexR("\\KaTeX",tag="span"))` `mean` would look something like this `r as.tags(katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",tag="span"))`.  Unfortunately, you might notice, that we have to **enclose it in `as.tags(...)`** to make it work, but hey it does work.
 
