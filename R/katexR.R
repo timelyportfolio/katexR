@@ -1,6 +1,9 @@
-#' <Add Title>
+#' KaTeX for R
 #'
-#' <Add Description>
+#' \code{katexR} is a \href{http://htmlwidgets.org}{htmlwidget} designed to make using
+#' \href{http://khan.github.io/KaTeX/}{KaTeX} easy in R.  Since \code{katexR}
+#' is an \code{htmlwidget}, we can use \code{KaTeX} in nearly all R contexts - 
+#' console, RStudio Viewer, browser, and Shiny.
 #'
 #' @import htmlwidgets
 #'
@@ -9,8 +12,6 @@ katexR <- function(
   katex = ""
   , tag = "div"
   , style = NULL
-  , width = NULL
-  , height = NULL
 ) {
 
   # send katex 
@@ -24,8 +25,6 @@ katexR <- function(
   htmlwidgets::createWidget(
     name = 'katexR',
     x,
-    width = width,
-    height = height,
     sizingPolicy = htmlwidgets::sizingPolicy(
       knitr.figure = FALSE
       ,defaultWidth = "auto"
