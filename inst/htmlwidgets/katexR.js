@@ -14,11 +14,20 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
 
-    // empty out our widget el
+    // empty out our widget el in case of dynamic or Shiny
     el.innerHTML = "";
-    katex.render( x.katex, el )
     
-  
+    // check for blank katex
+    //   if blank assume katexR just used for dependency injection
+    if( x.katex !== "" ){
+      el.style.display = "";
+      katex.render( x.katex, el );
+      // use expando to attach original KaTeX string
+      el.katex = x.katex;
+    } else {
+      el.style.display = "none";
+    }
+    
   },
 
   resize: function(el, width, height, instance) {

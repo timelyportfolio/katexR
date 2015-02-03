@@ -5,11 +5,12 @@
 #' @import htmlwidgets
 #'
 #' @export
-katexR <- function(message, width = NULL, height = NULL) {
+katexR <- function(katex = "", tag = "div", width = NULL, height = NULL) {
 
-  # forward options using x
+  # send katex to 
   x = list(
-    message = message
+    katex = katex
+    ,tag = tag
   )
 
   # create widget
@@ -22,17 +23,52 @@ katexR <- function(message, width = NULL, height = NULL) {
   )
 }
 
-#' Widget output function for use in Shiny
-#'
-#' @export
-katexROutput <- function(outputId, width = '100%', height = '400px'){
-  shinyWidgetOutput(outputId, 'katexR', width, height, package = 'katexR')
+
+as.tags <- function(x, ...){
+  UseMethod("as.tags")
 }
 
-#' Widget render function for use in Shiny
-#'
-#' @export
-renderKatexR <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, katexROutput, env, quoted = TRUE)
+#' Define custom as.tags function for katexR
+#' @method as.tags katexR
+#' @export as.tags.katexR
+as.tags.katexR <- function(x, standalone = FALSE) {
+  toHTML_katexR(x, standalone = standalone)
+}
+
+#' Define custom toHTML to pass tag type for katexR 
+toHTML_katexR <- function(x, standalone = FALSE, knitrOptions = NULL) {
+  
+  if (!is.null(x$elementId))
+    id <- x$elementId
+  else
+    id <- paste("htmlwidget", as.integer(stats::runif(1, 1, 10000)), sep="-")
+  
+  x$id <- id
+  
+
+  html <- htmltools::tagList(
+    htmlwidgets:::widget_html(
+      name = class(x)[1],
+      package = attr(x, "package"),
+      id = id,
+      style = x$x$style,
+      class = class(x)[1],
+      tagType = x$x$tag
+    ),
+    htmlwidgets:::widget_data(x, id)
+  )
+  html <- htmltools::attachDependencies(
+    html
+    , c(
+      htmlwidgets:::widget_dependencies(class(x)[1], attr(x, 'package'))
+      , x$dependencies
+    )
+  )
+  
+  htmltools::browsable(html)
+}
+
+#' Define custom html function for katexR
+katexR_html <- function( id, style, class, tagType = "div", ... ){
+  htmltools::tag(tagType, list(id = id, style = style, class = class,"") )
 }
