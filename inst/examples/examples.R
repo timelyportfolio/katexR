@@ -1,5 +1,7 @@
 library(katexR)
 library(htmltools)
+library(rvest)
+library(XML)
 library(pipeR)
 
 tagList(
@@ -84,3 +86,33 @@ sort(c(positions$begin[[1]],positions$end[[1]])) %>>%
     )
   )) %>>%
   html_print
+
+
+# borrow some tests from Mathjax
+"http://cdn.mathjax.org/mathjax/latest/test/sample.html" %>>%
+  html -> mj
+ 
+mj %>>%
+  html_nodes( "p" ) %>>%
+  (xmlApply(
+    .[1:7]  # 8 is an inline so will skip
+    ,function(p){
+      gsub(
+        x= xmlValue(p)
+        ,pattern = "\\n\\\\(begin|end)*(\\{align\\})\\n"
+        ,replacement = ""
+      ) %>>%
+      (gsub(
+        x = .
+        ,pattern = "\\&"
+        ,replacement = ""
+      )) %>>%
+      strsplit("\\\\\\\\\n") %>>%
+      unlist %>>%
+      (tags$div(
+        lapply(.,katexR)
+      )) %>>%
+      html_print
+    }
+  ))
+  
