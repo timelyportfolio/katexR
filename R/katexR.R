@@ -2,9 +2,39 @@
 #'
 #' \code{katexR} is a \href{http://htmlwidgets.org}{htmlwidget} designed to make using
 #' \href{http://khan.github.io/KaTeX/}{KaTeX} easy in R.  Since \code{katexR}
-#' is an \code{htmlwidget}, we can use \code{KaTeX} in nearly all R contexts - 
+#' is an \code{htmlwidget}, we can use \code{KaTeX} in nearly all R contexts: 
 #' console, RStudio Viewer, browser, and Shiny.
 #'
+#' @param katex String containing the formula to be parsed and rendered
+#' @param tag String for the type of html tag to use. \code{tag = "div"} is the default.
+#' @param style String with the style attributes, such as \code{style = "font-size:20px;text-align:center;"}.
+#' Note, the behavior of \code{katexR} is different from standard \code{htmlwidgets}, and \code{height}
+#' and \code{width} parameters will not work.
+#' 
+#' @examples
+#' \dontrun{
+#' # a simple mean formula
+#' katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}")
+#' 
+#' # to illustrate use with a different tag and some styling
+#' katexR(
+#'  "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}"
+#'  ,tag = "p"
+#'  ,style = "color:blue; font-size:300%; text-align:center;"
+#' )
+#' 
+#' # katexR plays nicely with htmltools
+#' library(htmltools)
+#' 
+#' html_print(tagList(
+#'  tags$div(
+#'    tags$pre( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}" )
+#'    , katexR( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="span" )
+#'  )
+#' ))
+#' 
+#' }
+#' 
 #' @import htmlwidgets
 #'
 #' @export

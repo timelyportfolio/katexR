@@ -23,10 +23,10 @@ html_print(
         "f(x) = \\int_{-\\infty}^\\infty
             \\hat f(\\xi)\\,e^{2 \\pi i \\xi x}
             \\,d\\xi"
-        )
       )
     )
   )
+)
 ```
 
 `katexR` is the `htmlwidget` of the week at [Building Widgets](http://buildingwidgets.org).  See the writeup on `katexR` and all of the other `htmlwidgets` from the project on the [blog](http://buildingwidgets.org/blog).
