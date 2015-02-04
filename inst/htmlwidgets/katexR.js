@@ -21,9 +21,13 @@ HTMLWidgets.widget({
     //   if blank assume katexR just used for dependency injection
     if( x.katex !== "" ){
       el.style.display = "";
-      katex.render( x.katex, el );
-      // use expando to attach original KaTeX string
-      el.katex = x.katex;
+      try {
+        katex.render( x.katex, el );
+        // use expando to attach original KaTeX string
+        el.katex = x.katex;
+      } catch(e) {
+        el.innerHTML = ["<pre>",x.katex,e.message,"</pre>"].join("\n")
+      }
     } else {
       el.style.display = "none";
     }
