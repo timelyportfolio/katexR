@@ -37,5 +37,6 @@ katex.render('\KaTeX',document.getElementById('katex-from-scratch'))
 
 ### Inline KaTeX
 
-Now, let's go back to one rendered by our `katexR` function like this with some inline `R` code to see how we get it in a paragraph.  In `r as.tags(katexR("\\KaTeX",tag="span"))` `mean` would look something like this `r as.tags(katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",tag="span"))`.  Unfortunately, you might notice, that we have to **enclose it in `as.tags(...)`** to make it work, but hey it does work.
+Now, let's go back to one rendered by our `katexR` function like this with some inline `R` code to see how we get it in a paragraph.  Also, when inlining, you will probably want to set `inline=T`.  In `r as.tags(katexR("\\KaTeX",tag="span",inline=T))` `mean` would look something like this `r as.tags(katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",tag="span",inline=T))`.  Unfortunately, you might notice, that we have to **enclose it in `as.tags(...)`** to make it work, but hey it does work.
+
 
