@@ -39,5 +39,7 @@ html_print(
 )
 ```
 
+Like all `htmlwidgets`, `katexR` will integrate beautifully with `rmarkdown`.  If you write research in `R`, I think you'll definitely want to try out `katexR`.
+
 `katexR` is the `htmlwidget` of the week at [Building Widgets](http://buildingwidgets.org).  See the writeup on `katexR` and all of the other `htmlwidgets` from the project on the [blog](http://buildingwidgets.org/blog).
 
