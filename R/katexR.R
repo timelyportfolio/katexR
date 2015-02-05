@@ -7,6 +7,9 @@
 #'
 #' @param katex String containing the formula to be parsed and rendered
 #' @param tag String for the type of html tag to use. \code{tag = "div"} is the default.
+#' @param inline Logical to use \code{\\displaystyle}.  Default is \code{FALSE}.
+#'          Change to \code{TRUE} if you would like your formula to be included inline.
+#'          See \href{https://github.com/Khan/KaTeX/issues/66}{this issue} for more details.
 #' @param style String with the style attributes, such as \code{style = "font-size:20px;text-align:center;"}.
 #' Note, the behavior of \code{katexR} is different from standard \code{htmlwidgets}, and \code{height}
 #' and \code{width} parameters will not work.
@@ -52,6 +55,7 @@
 katexR <- function(
   katex = ""
   , tag = "div"
+  , inline = FALSE
   , style = NULL
 ) {
 
@@ -59,6 +63,7 @@ katexR <- function(
   x = list(
     katex = katex
     ,tag = tag
+    ,inline = inline
     ,style = style
   )
 
@@ -122,5 +127,5 @@ toHTML_katexR <- function(x, standalone = FALSE, knitrOptions = NULL) {
 
 #' Define custom html function for katexR
 katexR_html <- function( id, style, class, tagType = "div", ... ){
-  htmltools::tag(tagType, list(id = id, style = style, class = class,"") )
+  htmltools::tag(tagType, list(id = id, style = style, class = class, "") )
 }

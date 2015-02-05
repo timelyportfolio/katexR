@@ -3,12 +3,16 @@
 \alias{katexR}
 \title{KaTeX for R}
 \usage{
-katexR(katex = "", tag = "div", style = NULL)
+katexR(katex = "", tag = "div", inline = FALSE, style = NULL)
 }
 \arguments{
 \item{katex}{String containing the formula to be parsed and rendered}
 
 \item{tag}{String for the type of html tag to use. \code{tag = "div"} is the default.}
+
+\item{inline}{Logical to use \code{\\displaystyle}.  Default is \code{FALSE}.
+Change to \code{TRUE} if you would like your formula to be included inline.
+See \href{https://github.com/Khan/KaTeX/issues/66}{this issue} for more details.}
 
 \item{style}{String with the style attributes, such as \code{style = "font-size:20px;text-align:center;"}.
 Note, the behavior of \code{katexR} is different from standard \code{htmlwidgets}, and \code{height}

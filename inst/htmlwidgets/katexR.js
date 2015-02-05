@@ -22,7 +22,15 @@ HTMLWidgets.widget({
     if( x.katex !== "" ){
       el.style.display = "";
       try {
-        katex.render( x.katex, el );
+        // inline will not wrap the katex with displaystyle
+        //  with katexR default will be to wrap with displaystyle{ ... }
+        // try to be smart to make sure user has not already
+        //  supplied a displaystyle        
+        if(x.inline || /(displaystyle)/.exec(x.katex) ){
+          katex.render( x.katex, el );
+        } else {
+          katex.render( '\\displaystyle{' + x.katex + '}', el )
+        }
         // use expando to attach original KaTeX string
         el.katex = x.katex;
       } catch(e) {
