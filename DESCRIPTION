@@ -1,8 +1,17 @@
 Package: katexR
 Title: htmlwidget for KaTeX in R
 Version: 0.1
-Authors@R: "First Last <first.last@example.com> [aut, cre]"
-Description: What the package does (one paragraph)
+Authors@R: c(
+    person("Khan Academy", "", role = c("aut", "cph"), comment = "KaTeX
+    in htmlwidgets/lib, http://github.com/Khan/KaTeX"),
+    person("Kenton", "Russell", role = c("aut", "cre"), comment = "R
+    interface", email = "kent.russell@timelyportfolio.com")
+    )
+Maintainer: Kenton Russell<kent.russell@timelyportfolio.com>
+Description: katexR combines the KaTeX for fast rendering of math on the web
+    with the convenience and infrastructure of an R htmlwidget.  One line of
+    code, and you will have your formulas in the console, browser, RStudio
+    Viewer, RStudio markdown, or RStudio Shiny.
 Depends:
     R (>= 3.1.2)
 License: MIT + file LICENSE
