@@ -81,7 +81,13 @@ sort(c(positions$begin[[1]],positions$end[[1]])) %>>%
     lapply(
       .
       ,function(f){
-        katexR(f,style="line-height:300%;text-align:center;", tag="p" )
+        tags$div(
+          tags$pre(f, style = "background-color:lightgray;")
+          ,katexR(
+            f
+            , style="line-height:300%;text-align:center;font-size:200%;"
+            , tag="p" )
+        )
       }
     )
   )) %>>%
@@ -89,6 +95,7 @@ sort(c(positions$begin[[1]],positions$end[[1]])) %>>%
 
 
 # borrow some tests from Mathjax
+#  most of these  are not working but a good start
 "http://cdn.mathjax.org/mathjax/latest/test/sample.html" %>>%
   html -> mj
  
@@ -107,10 +114,25 @@ mj %>>%
         ,pattern = "\\&"
         ,replacement = ""
       )) %>>%
+      (gsub(
+        x=.
+        ,pattern = "(\\\\)(\\[)|\\]"
+        ,replacement = ""
+      )) %>>%
+      (gsub(
+        x=.
+        ,pattern = "(\\\\)(\\s?)"
+        ,replacement = ""
+      ))  %>>%
+      (gsub(
+        x=.
+        ,pattern = "((left)|(right)|(dot)|(sigma)|(sum)|(leq)|(\\!)|(frac)|(times)|(partial)|(sqrt)|(choose))"
+        ,replacement = "\\\\\\1"
+      ))  %>>%
       strsplit("\\\\\\\\\n") %>>%
       unlist %>>%
       (tags$div(
-        lapply(.,katexR)
+        lapply(.,function(f){as.tags(katexR(f))})
       )) %>>%
       html_print
     }
