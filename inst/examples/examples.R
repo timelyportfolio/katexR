@@ -94,6 +94,29 @@ sort(c(positions$begin[[1]],positions$end[[1]])) %>>%
   html_print
 
 
+# use http://en.wikibooks.org/wiki/LaTeX/Mathematics
+wK <- "http://en.wikibooks.org/wiki/LaTeX/Mathematics" %>>%
+  html
+
+wK %>>%
+  html_nodes("table .source-latex,code") %>>%
+  html_text %>>%
+  (
+    tagList(
+      lapply(
+        .
+        ,function(f){
+          tags$div(
+            tags$pre(f)
+            ,katexR(f)
+          )
+        }
+      )
+    )
+  ) %>>%
+  html_print
+
+
 # borrow some tests from Mathjax
 #  most of these  are not working but a good start
 "http://cdn.mathjax.org/mathjax/latest/test/sample.html" %>>%
