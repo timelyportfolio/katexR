@@ -7,6 +7,16 @@
 ```R
 #devtools::install_github("timelyportfolio/katexR")
 library(katexR)
+katexR("\\KaTeX")
+
+katexR( "Var(X)= E(X^2)-(E(X))^2" )
+```
+
+More than likely you might like to integrate `katexR` in your other HTML content.  With `tags` from `htmltools`, we could put it all together like this.
+
+```R
+#devtools::install_github("timelyportfolio/katexR")
+library(katexR)
 library(htmltools)
 
 # use the example from the KaTeX site

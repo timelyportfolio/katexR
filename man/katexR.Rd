@@ -42,6 +42,17 @@ html_print(tagList(
  )
 ))
 
+# or if you want to customize your KaTeX experience
+#   use katexR to just get the required dependencies
+html_print(tagList(
+  tags$p( id = "katex-one" )
+  ,tags$script( "
+     katex.render('\\\\\\\\frac{1}{n} \\\\\\\\sum_{i=i}^{n} x_{i}',document.getElementById('katex-one'))
+  ")
+  ,katexR() # empty means just use for js/css dependencies
+))
+
+
 }
 }
 
