@@ -9,7 +9,7 @@ tagList(
   ,tags$script( "
       katex.render('\\\\frac{1}{n} \\\\sum_{i=i}^{n} x_{i}',document.getElementById('katex-one'))
   " )
-  ,katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}")
+  ,katex("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}")
 ) %>>% html_print
 
 
@@ -29,7 +29,7 @@ rnwText %>>%
       ,function(f){
         tags$div(
           tags$pre(f)
-          ,katexR(f)
+          ,katex(f)
         )
       }
     )

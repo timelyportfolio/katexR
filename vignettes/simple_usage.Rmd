@@ -17,15 +17,15 @@ This is an R Markdown document.  Let's see how we might use it with the `katexR`
 library(katexR)
 library(htmltools)
 
-as.tags(katexR( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="p", style = "font-size:300%;" ))
+as.tags(katex( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="p", style = "font-size:300%;" ))
 
 # without the as.tags() enclosure
-katexR( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="span", style = "font-size:300%;" )
+katex( "\\frac{1}{n} \\sum_{i=i}^{n} x_{i}", tag="span", style = "font-size:300%;" )
 ```
 
 ### KaTeX the hard way
 
-Now, since we get the `KaTeX` dependencies with `katexR`, we can also use them bare.  If you don't anticipate already having a `katexR()` call in the document, then you can just do an empty `katexR()` to bring in the dependencies.
+Now, since we get the `KaTeX` dependencies with `katexR`, we can also use them bare.  If you don't anticipate already having a `katex(...)` call in the document, then you can just do an empty `katex()` to bring in the dependencies.
 
 ```
 <h5 style="text-align:center;" ><span id = "katex-from-scratch"></span> with `katexR`</h5>
@@ -41,5 +41,5 @@ katex.render('\KaTeX',document.getElementById('katex-from-scratch'))
 
 ### Inline KaTeX
 
-Now, let's go back to one rendered by our `katexR` function like this with some inline `R` code to see how we get it in a paragraph.  Also, when inlining, you will probably want to set `inline=T`.  In `r as.tags(katexR("\\KaTeX",tag="span",inline=T))` `mean` would look something like this `r as.tags(katexR("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",tag="span",inline=T))`.  Unfortunately, you might notice, that we have to **enclose it in `as.tags(...)`** to make it work, but hey it does work.
+Now, let's go back to one rendered by our `katexR` function like this with some inline `R` code to see how we get it in a paragraph.  Also, when inlining, you will probably want to set `inline=T`.  In `r as.tags(katex("\\KaTeX",tag="span",inline=T))` `mean` would look something like this `r as.tags(katex("\\frac{1}{n} \\sum_{i=i}^{n} x_{i}",tag="span",inline=T))`.  Unfortunately, you might notice, that we have to **enclose it in `as.tags(...)`** to make it work, but hey it does work.
 

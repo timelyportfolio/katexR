@@ -19,22 +19,22 @@ HTMLWidgets.widget({
     
     // check for blank katex
     //   if blank assume katexR just used for dependency injection
-    if( x.katex !== "" ){
+    if( x.tex !== "" ){
       el.style.display = "";
       try {
         // inline will not wrap the katex with displaystyle
         //  with katexR default will be to wrap with displaystyle{ ... }
         // try to be smart to make sure user has not already
         //  supplied a displaystyle        
-        if(x.inline || /(displaystyle)/.exec(x.katex) ){
-          katex.render( x.katex, el );
+        if(x.inline || /(displaystyle)/.exec(x.tex) ){
+          katex.render( x.tex, el );
         } else {
-          katex.render( '\\displaystyle{' + x.katex + '}', el )
+          katex.render( '\\displaystyle{' + x.tex + '}', el )
         }
         // use expando to attach original KaTeX string
-        el.katex = x.katex;
+        el.katex = x.tex;
       } catch(e) {
-        el.innerHTML = ["<pre>",x.katex,e.message,"</pre>"].join("\n")
+        el.innerHTML = ["<pre>",x.tex,e.message,"</pre>"].join("\n")
       }
     } else {
       el.style.display = "none";
