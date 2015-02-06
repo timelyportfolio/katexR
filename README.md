@@ -7,16 +7,16 @@
 ```R
 #devtools::install_github("timelyportfolio/katexR")
 library(katexR)
-katexR("\\KaTeX")
+katex("\\KaTeX")
 
-katexR( "Var(X)= E(X^2)-(E(X))^2" )
+katex( "Var(X)= E(X^2)-(E(X))^2" )
 ```
 
 More than likely you might like to integrate `katexR` in your other HTML content.  With `tags` from `htmltools`, we could put it all together like this.
 
 ```R
 #devtools::install_github("timelyportfolio/katexR")
-library(katexR)
+library(katex)
 library(htmltools)
 
 # use the example from the KaTeX site
@@ -29,7 +29,7 @@ html_print(
     )
     ,tags$p( " will become this ")
     ,as.tags(
-      katexR(
+      katex(
         "f(x) = \\int_{-\\infty}^\\infty
             \\hat f(\\xi)\\,e^{2 \\pi i \\xi x}
             \\,d\\xi"
