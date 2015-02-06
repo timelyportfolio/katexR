@@ -83,7 +83,7 @@ sort(c(positions$begin[[1]],positions$end[[1]])) %>>%
       ,function(f){
         tags$div(
           tags$pre(f, style = "background-color:lightgray;")
-          ,katexR(
+          ,katex(
             f
             , style="line-height:300%;text-align:center;font-size:200%;"
             , tag="p" )
@@ -108,7 +108,7 @@ wK %>>%
         ,function(f){
           tags$div(
             tags$pre(f)
-            ,katexR(f)
+            ,katex(f)
           )
         }
       )
@@ -155,7 +155,7 @@ mj %>>%
       strsplit("\\\\\\\\\n") %>>%
       unlist %>>%
       (tags$div(
-        lapply(.,function(f){as.tags(katexR(f))})
+        lapply(.,function(f){as.tags(katex(f))})
       )) %>>%
       html_print
     }
