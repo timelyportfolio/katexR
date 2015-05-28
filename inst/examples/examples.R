@@ -99,8 +99,28 @@ wK <- "http://en.wikibooks.org/wiki/LaTeX/Mathematics" %>>%
   html
 
 wK %>>%
-  html_nodes("table .source-latex,code") %>>%
-  html_text %>>%
+  html_nodes("table") %>>%
+  html_nodes("code") %>>%
+  xml_text %>>%
+  (
+    tagList(
+      lapply(
+        .
+        ,function(f){
+          tags$div(
+            tags$pre(f)
+            ,katex(f)
+          )
+        }
+      )
+    )
+  ) %>>%
+  html_print
+
+wK %>>%
+  html_nodes("table") %>>%
+  html_nodes(xpath = '//*[contains(@class, "source-latex")]') %>>%
+  xml_text %>>%
   (
     tagList(
       lapply(
